@@ -28,8 +28,21 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = $request->isMethod('put') ? User::findOrFail
-        ($request->user_id) : new User;
+        $request->validate([
+           'firstname' => 'required',
+            'lastname' => 'required',
+            'email' => 'required|email'
+       ]);
+        // $this->validate(request(), [
+        //     'firstname' => 'required',
+        //     'lastname' => 'required',
+        //     'email' => 'required|email'
+        // ]);
+        // $user = $request->isMethod('put') ? User::findOrFail
+        // ($request->user_id) : new User;
+        //if($request->isMethod('put')){
+            $user = User::findOrFail($request->user_id);
+        //}
 
         $user->id = $request->input('user_id');
         $user->firstname = $request->input('firstname');
@@ -37,7 +50,8 @@ class UserController extends Controller
         $user->email = $request->input('email');
 
         if($user->save()){
-            return new UserResource($user);
+            //return new UserResource($user);
+            return['message' => 'User Updated'];
         }
     }
 
@@ -86,4 +100,6 @@ class UserController extends Controller
     {
         //
     }
+
+
 }
