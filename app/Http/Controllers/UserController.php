@@ -34,7 +34,7 @@ class UserController extends Controller
             'email' => 'required|email'
        ]);
         
-            $user = User::findOrFail($request->user_id);
+        $user = User::findOrFail($request->user_id);
         
 
         $user->id = $request->input('user_id');
