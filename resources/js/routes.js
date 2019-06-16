@@ -16,11 +16,6 @@ let routes = [
 	path: '/products',
 	component: require('./components/Products').default
 },
-//  {
-//     name: 'tms',
-// 	path: '/',
-// 	component: require('./views/Tms').default
-// }
 ];
  export default new VueRouter ({
  	routes,
